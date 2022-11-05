@@ -13,6 +13,7 @@ import { useDevice } from "@core/providers/useDevice.js";
 import { renderOptions } from "@core/utils/selectEnumOptions.js";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { Protobuf } from "@meshtastic/meshtasticjs";
+import { useTranslation } from "react-i18next";
 
 export const Display = (): JSX.Element => {
   const { config, connection } = useDevice();
@@ -26,6 +27,7 @@ export const Display = (): JSX.Element => {
     defaultValues: config.display,
     resolver: classValidatorResolver(DisplayValidation),
   });
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     reset(config.display);
@@ -47,9 +49,9 @@ export const Display = (): JSX.Element => {
           }
         ),
         {
-          loading: "Saving...",
-          success: "Saved Display Config, Restarting Node",
-          error: "No response received",
+          loading: t("display.saving").toString(),
+          success: t("display.saved").toString(),
+          error: t("display.saveError").toString(),
         }
       );
     }
@@ -57,29 +59,29 @@ export const Display = (): JSX.Element => {
 
   return (
     <Form
-      title="Display Config"
+      title={t("display.title")}
       breadcrumbs={["Config", "Display"]}
       reset={() => reset(config.display)}
       dirty={isDirty}
       onSubmit={onSubmit}
     >
       <Input
-        label="Screen Timeout"
-        description="Turn off the display after this long"
-        suffix="Seconds"
+        label={t("display.timeout")}
+        description={t("display.timeoutDescription")}
+        suffix={t("display.timeoutSuffix")}
         type="number"
         {...register("screenOnSecs", { valueAsNumber: true })}
       />
       <Input
-        label="Carousel Delay"
-        description="How fast to cycle through windows"
-        suffix="Seconds"
+        label={t("display.carousel")}
+        description={t("display.carouselDescription")}
+        suffix={t("display.carouselSuffix")}
         type="number"
         {...register("autoScreenCarouselSecs", { valueAsNumber: true })}
       />
       <Select
-        label="GPS Display Units"
-        description="Coordinate display format"
+        label={t("display.gps")}
+        description={t("display.gpsDescription")}
         {...register("gpsFormat", { valueAsNumber: true })}
       >
         {renderOptions(Protobuf.Config_DisplayConfig_GpsCoordinateFormat)}
@@ -89,8 +91,8 @@ export const Display = (): JSX.Element => {
         control={control}
         render={({ field: { value, ...rest } }) => (
           <Toggle
-            label="Compass North Top"
-            description="Fix north to the top of compass"
+            label={t("display.compass")}
+            description={t("display.compassDescription")}
             checked={value}
             {...rest}
           />
@@ -101,16 +103,16 @@ export const Display = (): JSX.Element => {
         control={control}
         render={({ field: { value, ...rest } }) => (
           <Toggle
-            label="Flip Screen"
-            description="Flip display 180 degrees"
+            label={t("display.flipScreen")}
+            description={t("display.flipScreenDescription")}
             checked={value}
             {...rest}
           />
         )}
       />
       <Select
-        label="Display Units"
-        description="Display metric or imperial units"
+        label={t("display.units")}
+        description={t("display.unitsDescription")}
         {...register("units", { valueAsNumber: true })}
       >
         {renderOptions(Protobuf.Config_DisplayConfig_DisplayUnits)}

@@ -14,9 +14,11 @@ import { useDevice } from "@core/providers/useDevice.js";
 import { renderOptions } from "@core/utils/selectEnumOptions.js";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { Protobuf } from "@meshtastic/meshtasticjs";
+import { useTranslation } from "react-i18next";
 
 export const LoRa = (): JSX.Element => {
   const { config, connection } = useDevice();
+  const { t, i18n } = useTranslation();
 
   const {
     register,
@@ -55,9 +57,9 @@ export const LoRa = (): JSX.Element => {
           }
         ),
         {
-          loading: "Saving...",
-          success: "Saved LoRa Config, Restarting Node",
-          error: "No response received",
+          loading: t("lora.saving").toString(),
+          success: t("lora.saved").toString(),
+          error: t("lora.saveError").toString(),
         }
       );
     }
@@ -65,38 +67,38 @@ export const LoRa = (): JSX.Element => {
 
   return (
     <Form
-      title="LoRa Config"
+      title={t("lora.title")}
       breadcrumbs={["Config", "LoRa"]}
       reset={() => reset(config.lora)}
       dirty={isDirty}
       onSubmit={onSubmit}
     >
-      <FormSection title="Modem Settings">
+      <FormSection title={t("lora.modem")}>
         <Controller
           name="usePreset"
           control={control}
           render={({ field: { value, ...rest } }) => (
             <Toggle
-              label="Use Preset"
-              description="Use one of the predefined modem presets"
+              label={t("lora.modem.usePreset")}
+              description={t("lora.modem.usePresetDescription")}
               checked={value}
               {...rest}
             />
           )}
         />
         <Select
-          label="Preset"
-          description="Modem preset to use"
+          label={t("lora.modem.preset")}
+          description={t("lora.modem.presetDescription")}
           disabled={!usePreset}
           {...register("modemPreset", { valueAsNumber: true })}
         >
           {renderOptions(Protobuf.Config_LoRaConfig_ModemPreset)}
         </Select>
         <Input
-          label="Bandwidth"
-          description="Channel bandwidth in MHz"
+          label={t("lora.modem.bandwidth")}
+          description={t("lora.modem.bandwidthDescription")}
           type="number"
-          suffix="MHz"
+          suffix={t("lora.modem.bandwidthSuffix")}
           error={errors.bandwidth?.message}
           {...register("bandwidth", {
             valueAsNumber: true,
@@ -104,10 +106,10 @@ export const LoRa = (): JSX.Element => {
           disabled={usePreset}
         />
         <Input
-          label="Spread Factor"
-          description="Indicates the number of chirps per symbol"
+          label={t("lora.modem.spreadFactor")}
+          description={t("lora.modem.spreadFactorDescription")}
           type="number"
-          suffix="CPS"
+          suffix={t("lora.modem.spreadFactorSuffix")}
           error={errors.spreadFactor?.message}
           {...register("spreadFactor", {
             valueAsNumber: true,
@@ -115,8 +117,8 @@ export const LoRa = (): JSX.Element => {
           disabled={usePreset}
         />
         <Input
-          label="Coding Rate"
-          description="The denominator of the coding rate"
+          label={t("lora.modem.codingRate")}
+          description={t("lora.modem.codingRateDescription")}
           type="number"
           error={errors.codingRate?.message}
           {...register("codingRate", {

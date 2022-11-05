@@ -71,60 +71,60 @@ export const CommandPalette = (): JSX.Element => {
 
   const groups: Group[] = [
     {
-      name: t("goto"),
+      name: t("commandNav.goto"),
       icon: LinkIcon,
       commands: [
         {
-          name: t("messages"),
+          name: t("commandNav.messages"),
           icon: InboxIcon,
           action() {
             setActivePage("messages");
           },
         },
         {
-          name: t("map"),
+          name: t("commandNav.map"),
           icon: MapIcon,
           action() {
             setActivePage("map");
           },
         },
         {
-          name: t("extensions"),
+          name: t("commandNav.extensions"),
           icon: BeakerIcon,
           action() {
             setActivePage("extensions");
           },
         },
         {
-          name: t("config"),
+          name: t("commandNav.config"),
           icon: Cog8ToothIcon,
           action() {
             setActivePage("config");
           },
         },
         {
-          name: t("channels"),
+          name: t("commandNav.channels"),
           icon: Square3Stack3DIcon,
           action() {
             setActivePage("channels");
           },
         },
         {
-          name: t("peers"),
+          name: t("commandNav.peers"),
           icon: UsersIcon,
           action() {
             setActivePage("peers");
           },
         },
         {
-          name: t("info"),
+          name: t("commandNav.info"),
           icon: IdentificationIcon,
           action() {
             setActivePage("info");
           },
         },
         {
-          name: t("logs"),
+          name: t("commandNav.logs"),
           icon: DocumentTextIcon,
           action() {
             setActivePage("logs");
@@ -133,18 +133,18 @@ export const CommandPalette = (): JSX.Element => {
       ],
     },
     {
-      name: t("manage"),
+      name: t("commandNav.manage"),
       icon: DevicePhoneMobileIcon,
       commands: [
         {
-          name: "[WIP] " + t("switchNode"),
+          name: "[WIP] " + t("commandNav.switchNode"),
           icon: ArrowsRightLeftIcon,
           action() {
             alert('This feature is not implemented');
           },
         },
         {
-          name: t("connectNewNode"),
+          name: t("commandNav.connectNewNode"),
           icon: PlusIcon,
           action() {
             setSelectedDevice(0);
@@ -153,31 +153,31 @@ export const CommandPalette = (): JSX.Element => {
       ],
     },
     {
-      name: t("contextual"),
+      name: t("commandNav.contextual"),
       icon: CubeTransparentIcon,
       commands: [
         {
-          name: t("qrGenerator"),
+          name: t("commandNav.qrGenerator"),
           icon: QrCodeIcon,
           action() {
             setQRDialogOpen(true);
           },
         },
         {
-          name: t("resetPeers"),
+          name: t("commandNav.resetPeers"),
           icon: TrashIcon,
           action() {
             if (connection) {
               void toast.promise(connection.resetPeers(), {
-                loading: t("resetting").toString(),
-                success: t("resetPeersSuccess").toString(),
-                error: t("resetPeersNoResponse").toString(),
+                loading: t("commandNav.resetting").toString(),
+                success: t("commandNav.resetPeersSuccess").toString(),
+                error: t("commandNav.resetPeersNoResponse").toString(),
               });
             }
           },
         },
         {
-          name: t("disconnect"),
+          name: t("commandNav.disconnect"),
           icon: XCircleIcon,
           action() {
             void connection?.disconnect();
@@ -188,18 +188,18 @@ export const CommandPalette = (): JSX.Element => {
       ],
     },
     {
-      name: t("debug"),
+      name: t("commandNav.debug"),
       icon: BugAntIcon,
       commands: [
         {
-          name: t("reconfigure"),
+          name: t("commandNav.reconfigure"),
           icon: ArrowPathIcon,
           action() {
             void connection?.configure();
           },
         },
         {
-          name: "[WIP] " + t("clearMessages"),
+          name: "[WIP] " + t("commandNav.clearMessages"),
           icon: ArchiveBoxXMarkIcon,
           action() {
             alert('This feature is not implemented');
@@ -208,11 +208,11 @@ export const CommandPalette = (): JSX.Element => {
       ],
     },
     {
-      name: t("application"),
+      name: t("commandNav.application"),
       icon: WindowIcon,
       commands: [
         {
-          name: "[WIP] " + t("toggleDarkMode"),
+          name: "[WIP] " + t("commandNav.toggleDarkMode"),
           icon: MoonIcon,
           action() {
             alert('This feature is not implemented');

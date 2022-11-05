@@ -12,6 +12,7 @@ import { Protobuf } from "@meshtastic/meshtasticjs";
 import { Checkbox } from "../form/Checkbox.js";
 import { Input } from "../form/Input.js";
 import { IconButton } from "../IconButton.js";
+import { useTranslation } from "react-i18next";
 
 export interface QRDialogProps {
   isOpen: boolean;
@@ -28,6 +29,7 @@ export const QRDialog = ({
 }: QRDialogProps): JSX.Element => {
   const [selectedChannels, setSelectedChannels] = useState<number[]>([0]);
   const [QRCodeURL, setQRCodeURL] = useState<string>("");
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     const channelsToEncode = channels
@@ -56,9 +58,9 @@ export const QRDialog = ({
           <div className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow">
             <div className="flex px-4 py-5 sm:px-6">
               <div>
-                <h1 className="text-lg font-bold">Generate QR Code</h1>
+                <h1 className="text-lg font-bold">{t("qrDialog.generateQr")}</h1>
                 <h5 className="text-sm text-slate-600">
-                  The current LoRa configuration will also be shared.
+                  {t("qrDialog.generateQrDescription")}
                 </h5>
               </div>
               <IconButton
@@ -106,14 +108,14 @@ export const QRDialog = ({
 
             <div className="px-4 py-4 sm:px-6">
               <Input
-                label="Sharable URL"
+                label={t("qrDialog.shareableUrl")}
                 value={QRCodeURL}
                 disabled
                 action={{
                   icon: <ClipboardIcon className="h-4" />,
                   action() {
                     void navigator.clipboard.writeText(QRCodeURL);
-                    toast.success("Copied URL to Clipboard");
+                    toast.success(t("qrDialog.urlCopied").toString());
                   },
                 }}
               />

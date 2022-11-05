@@ -9,6 +9,7 @@ import {
   ChevronRightIcon,
   HomeIcon,
 } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 
 export interface FormProps extends HTMLProps<HTMLFormElement> {
   title: string;
@@ -27,6 +28,8 @@ export const Form = ({
   onSubmit,
   ...props
 }: FormProps): JSX.Element => {
+  const { t, i18n } = useTranslation();
+
   return (
     // eslint-disable-next-line @typescript-eslint/no-misused-promises
     <form className="w-full" onSubmit={onSubmit} {...props}>
@@ -57,10 +60,10 @@ export const Form = ({
               variant="secondary"
               iconBefore={<ArrowUturnLeftIcon className="w-4" />}
             >
-              Reset
+              {t("form.reset")}
             </Button>
             <Button disabled={!dirty} iconBefore={<FiSave className="w-4" />}>
-              Save
+              {t("form.save")}
             </Button>
           </div>
         </div>

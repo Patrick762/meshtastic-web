@@ -53,7 +53,7 @@ export const HTTP = (): JSX.Element => {
     <form className="flex w-full flex-col gap-2 p-4" onSubmit={onSubmit}>
       <div className="flex h-48 flex-col gap-2">
         <Input
-          label={t("ipOrHostname")}
+          label={t("http.ipOrHostname")}
           prefix={TLSEnabled ? "https://" : "http://"}
           placeholder="000.000.000.000 / meshtastic.local"
           {...register("ip")}
@@ -63,8 +63,8 @@ export const HTTP = (): JSX.Element => {
           control={control}
           render={({ field: { value, ...rest } }) => (
             <Toggle
-              label={t("useTls")}
-              description={t("tlsDescription")}
+              label={t("http.useTls")}
+              description={t("http.tlsDescription")}
               disabled={location.protocol === "https:"}
               checked={value}
               {...rest}
@@ -73,7 +73,7 @@ export const HTTP = (): JSX.Element => {
         />
       </div>
       <Button iconBefore={<PlusCircleIcon className="w-4" />} type="submit">
-        {t("connect")}
+        {t("http.connect")}
       </Button>
     </form>
   );

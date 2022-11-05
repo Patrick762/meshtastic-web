@@ -12,6 +12,7 @@ import { useDevice } from "@core/providers/useDevice.js";
 import { renderOptions } from "@core/utils/selectEnumOptions.js";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { Protobuf } from "@meshtastic/meshtasticjs";
+import { useTranslation } from "react-i18next";
 
 export const Device = (): JSX.Element => {
   const { config, connection } = useDevice();
@@ -25,6 +26,7 @@ export const Device = (): JSX.Element => {
     defaultValues: config.device,
     resolver: classValidatorResolver(DeviceValidation),
   });
+  const { t, i18n } = useTranslation();
 
   useEffect(() => {
     reset(config.device);
@@ -46,9 +48,9 @@ export const Device = (): JSX.Element => {
           }
         ),
         {
-          loading: "Saving...",
-          success: "Saved Device Config, Restarting Node",
-          error: "No response received",
+          loading: t("device.saving").toString(),
+          success: t("device.saved").toString(),
+          error: t("device.saveError").toString(),
         }
       );
     }
@@ -56,15 +58,15 @@ export const Device = (): JSX.Element => {
 
   return (
     <Form
-      title="Device Config"
+      title={t("device.title")}
       breadcrumbs={["Config", "Device"]}
       reset={() => reset(config.device)}
       dirty={isDirty}
       onSubmit={onSubmit}
     >
       <Select
-        label="Role"
-        description="What role the device performs on the mesh"
+        label={t("device.role")}
+        description={t("device.roleDescription")}
         {...register("role", { valueAsNumber: true })}
       >
         {renderOptions(Protobuf.Config_DeviceConfig_Role)}
@@ -74,8 +76,8 @@ export const Device = (): JSX.Element => {
         control={control}
         render={({ field: { value, ...rest } }) => (
           <Toggle
-            label="Serial Output Enabled"
-            description="Disable the device's serial console"
+            label={t("device.serialEnabled")}
+            description={t("device.serialEnabledDescription")}
             checked={value}
             {...rest}
           />
@@ -86,8 +88,8 @@ export const Device = (): JSX.Element => {
         control={control}
         render={({ field: { value, ...rest } }) => (
           <Toggle
-            label="Enabled Debug Log"
-            description="Output debugging information to the device's serial port (auto disables when serial client is connected)"
+            label={t("device.debugLogEnabled")}
+            description={t("device.debugLogEnabledDescription")}
             checked={value}
             {...rest}
           />

@@ -64,7 +64,7 @@ export const Serial = (): JSX.Element => {
           </Button>
         ))}
         {serialPorts.length === 0 && (
-          <Mono className="m-auto">{t("noDevicesPaired")}</Mono>
+          <Mono className="m-auto">{t("serial.noDevicesPaired")}</Mono>
         )}
       </div>
       <Button
@@ -75,7 +75,7 @@ export const Serial = (): JSX.Element => {
           });
         }}
       >
-        {t("newDevice")}
+        {t("serial.newDevice")}
       </Button>
     </div>
   );

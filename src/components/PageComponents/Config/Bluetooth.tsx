@@ -13,9 +13,11 @@ import { useDevice } from "@core/providers/useDevice.js";
 import { renderOptions } from "@core/utils/selectEnumOptions.js";
 import { classValidatorResolver } from "@hookform/resolvers/class-validator";
 import { Protobuf } from "@meshtastic/meshtasticjs";
+import { useTranslation } from "react-i18next";
 
 export const Bluetooth = (): JSX.Element => {
   const { config, connection } = useDevice();
+  const { t, i18n } = useTranslation();
 
   const {
     register,
@@ -48,9 +50,9 @@ export const Bluetooth = (): JSX.Element => {
           }
         ),
         {
-          loading: "Saving...",
-          success: "Saved Bluetooth Config, Restarting Node",
-          error: "No response received",
+          loading: t("bluetooth.saving").toString(),
+          success: t("bluetooth.saved").toString(),
+          error: t("bluetooth.saveError").toString(),
         }
       );
     }
@@ -64,7 +66,7 @@ export const Bluetooth = (): JSX.Element => {
 
   return (
     <Form
-      title="Bluetooth Config"
+      title={t("bluetooth.title")}
       breadcrumbs={["Config", "Bluetooth"]}
       reset={() => reset(config.bluetooth)}
       dirty={isDirty}
@@ -75,16 +77,16 @@ export const Bluetooth = (): JSX.Element => {
         control={control}
         render={({ field: { value, ...rest } }) => (
           <Toggle
-            label="Enabled"
-            description="Enable or disbale Bluetooth"
+            label={t("bluetooth.enabled")}
+            description={t("bluetooth.toggle")}
             checked={value}
             {...rest}
           />
         )}
       />
       <Select
-        label="Pairing mode"
-        description="Pin selection behaviour."
+        label={t("bluetooth.pairingMode")}
+        description={t("bluetooth.pairingModeDescription")}
         {...register("mode", { valueAsNumber: true })}
       >
         {renderOptions(Protobuf.Config_BluetoothConfig_PairingMode)}
@@ -94,8 +96,8 @@ export const Bluetooth = (): JSX.Element => {
         disabled={
           pairingMode !== Protobuf.Config_BluetoothConfig_PairingMode.FIXED_PIN
         }
-        label="Pin"
-        description="Pin to use when pairing"
+        label={t("bluetooth.pin")}
+        description={t("bluetooth.pinDescription")}
         type="number"
         {...register("fixedPin", {
           valueAsNumber: true,
