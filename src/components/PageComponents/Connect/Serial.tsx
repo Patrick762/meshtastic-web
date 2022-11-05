@@ -9,11 +9,13 @@ import { subscribeAll } from "@core/subscriptions.js";
 import { randId } from "@core/utils/randId.js";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { ISerialConnection } from "@meshtastic/meshtasticjs";
+import { useTranslation } from "react-i18next";
 
 export const Serial = (): JSX.Element => {
   const [serialPorts, setSerialPorts] = useState<SerialPort[]>([]);
   const { addDevice } = useDeviceStore();
   const { setSelectedDevice } = useAppStore();
+  const { t, i18n } = useTranslation();
 
   const updateSerialPortList = useCallback(async () => {
     setSerialPorts(await navigator.serial.getPorts());
@@ -62,7 +64,7 @@ export const Serial = (): JSX.Element => {
           </Button>
         ))}
         {serialPorts.length === 0 && (
-          <Mono className="m-auto">No devices paired yet.</Mono>
+          <Mono className="m-auto">{t("No devices paired yet")}</Mono>
         )}
       </div>
       <Button
@@ -73,7 +75,7 @@ export const Serial = (): JSX.Element => {
           });
         }}
       >
-        New device
+        {t("New device")}
       </Button>
     </div>
   );

@@ -9,11 +9,13 @@ import { subscribeAll } from "@core/subscriptions.js";
 import { randId } from "@core/utils/randId.js";
 import { PlusCircleIcon } from "@heroicons/react/24/outline";
 import { Constants, IBLEConnection } from "@meshtastic/meshtasticjs";
+import { useTranslation } from "react-i18next";
 
 export const BLE = (): JSX.Element => {
   const [bleDevices, setBleDevices] = useState<BluetoothDevice[]>([]);
   const { addDevice } = useDeviceStore();
   const { setSelectedDevice } = useAppStore();
+  const { t, i18n } = useTranslation();
 
   const updateBleDeviceList = useCallback(async (): Promise<void> => {
     setBleDevices(await navigator.bluetooth.getDevices());
@@ -50,7 +52,7 @@ export const BLE = (): JSX.Element => {
           </Button>
         ))}
         {bleDevices.length === 0 && (
-          <Mono className="m-auto">No devices paired yet.</Mono>
+          <Mono className="m-auto">{t("No devices paired yet")}</Mono>
         )}
       </div>
       <Button
@@ -68,7 +70,7 @@ export const BLE = (): JSX.Element => {
             });
         }}
       >
-        New device
+        {t("New device")}
       </Button>
     </div>
   );

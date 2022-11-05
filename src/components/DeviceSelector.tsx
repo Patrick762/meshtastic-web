@@ -4,16 +4,18 @@ import { useAppStore } from "@app/core/stores/appStore.js";
 import { useDeviceStore } from "@app/core/stores/deviceStore.js";
 import { Hashicon } from "@emeraldpay/hashicon-react";
 import { CommandLineIcon, PlusIcon } from "@heroicons/react/24/outline";
+import { useTranslation } from "react-i18next";
 
 import { Mono } from "./Mono.js";
 
 export const DeviceSelector = (): JSX.Element => {
   const { getDevices } = useDeviceStore();
   const { selectedDevice, setSelectedDevice } = useAppStore();
+  const { t, i18n } = useTranslation();
 
   return (
     <div className="flex h-full w-16 items-center whitespace-nowrap bg-slate-50 pt-12 [writing-mode:vertical-rl]">
-      <Mono>Connected Devices</Mono>
+      <Mono>{t("Connected Devices")}</Mono>
       <span className="mt-6 flex gap-4 font-bold text-slate-900">
         {getDevices().map((device) => (
           <div
@@ -48,7 +50,7 @@ export const DeviceSelector = (): JSX.Element => {
       <div className="my-4 flex flex-col gap-2 [writing-mode:horizontal-tb]">
         <CommandLineIcon className="h-6 text-slate-400" />
         <Mono className="text-xs">
-          <kbd className="rounded-md bg-slate-200 p-0.5 pr-1 italic">Ctrl</kbd>+
+          <kbd className="rounded-md bg-slate-200 p-0.5 pr-1 italic">{t("Ctrl")}</kbd>+
           <kbd className="rounded-md bg-slate-200 p-0.5 pr-1 italic">K</kbd>
         </Mono>
       </div>
