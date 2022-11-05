@@ -1,16 +1,40 @@
 const data = {
   translation: {
-    "Connected Devices": "Connected Devices",
-    "Ctrl": "Ctrl",
+    "connectedDevices": "Connected Devices",
+    "ctrl": "Ctrl",
 
-    "No devices paired yet": "No devices paired yet",
-    "New device": "New device",
+    "noDevicesPaired": "No devices paired yet",
+    "newDevice": "New device",
 
-    "IP Address/Hostname": "IP Address/Hostname",
-    "Use TLS": "Use TLS",
-    "Connect": "Connect",
+    "ipOrHostname": "IP Address/Hostname",
+    "useTls": "Use TLS",
+    "tlsDescription": "Encrypts the traffic to the device",
+    "connect": "Connect",
 
-    "Enter Message": "Enter Message"
+    "goto": "Goto",
+    "messages": "Messages",
+    "map": "Map",
+    "extensions": "Extensions",
+    "config": "Config",
+    "channels": "Channels",
+    "peers": "Peers",
+    "info": "Info",
+    "logs": "Logs",
+    "manage": "Manage",
+    "switchNode": "Switch Node",
+    "connectNewNode": "Connect New Node",
+    "contextual": "Contextual",
+    "qrGenerator": "QR Code Generator",
+    "resetPeers": "Reset Peers",
+    "resetting": "Resetting...",
+    "resetPeersSuccess": "Succesfully reset peers",
+    "resetPeersNoResponse": "No response received",
+    "disconnect": "Disconnect",
+    "debug": "Debug",
+    "reconfigure": "Reconfigure",
+    "clearMessages": "Clear Messages",
+    "application": "Application",
+    "toggleDarkMode": "Toggle Dark Mode",
   }
 };
 

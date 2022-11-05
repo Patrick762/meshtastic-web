@@ -15,7 +15,7 @@ export const DeviceSelector = (): JSX.Element => {
 
   return (
     <div className="flex h-full w-16 items-center whitespace-nowrap bg-slate-50 pt-12 [writing-mode:vertical-rl]">
-      <Mono>{t("Connected Devices")}</Mono>
+      <Mono>{t("connectedDevices")}</Mono>
       <span className="mt-6 flex gap-4 font-bold text-slate-900">
         {getDevices().map((device) => (
           <div
@@ -50,7 +50,7 @@ export const DeviceSelector = (): JSX.Element => {
       <div className="my-4 flex flex-col gap-2 [writing-mode:horizontal-tb]">
         <CommandLineIcon className="h-6 text-slate-400" />
         <Mono className="text-xs">
-          <kbd className="rounded-md bg-slate-200 p-0.5 pr-1 italic">{t("Ctrl")}</kbd>+
+          <kbd className="rounded-md bg-slate-200 p-0.5 pr-1 italic">{t("ctrl")}</kbd>+
           <kbd className="rounded-md bg-slate-200 p-0.5 pr-1 italic">K</kbd>
         </Mono>
       </div>

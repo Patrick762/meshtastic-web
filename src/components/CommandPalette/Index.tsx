@@ -48,6 +48,7 @@ import { NoResults } from "./NoResults.js";
 import { PaletteTransition } from "./PaletteTransition.js";
 import { SearchBox } from "./SearchBox.js";
 import { SearchResult } from "./SearchResult.js";
+import { useTranslation } from "react-i18next";
 
 export interface Group {
   name: string;
@@ -66,63 +67,64 @@ export const CommandPalette = (): JSX.Element => {
 
   const { setQRDialogOpen, setActivePage, connection } = useDevice();
   const { setSelectedDevice, removeDevice, selectedDevice } = useAppStore();
+  const { t, i18n } = useTranslation();
 
   const groups: Group[] = [
     {
-      name: "Goto",
+      name: t("goto"),
       icon: LinkIcon,
       commands: [
         {
-          name: "Messages",
+          name: t("messages"),
           icon: InboxIcon,
           action() {
             setActivePage("messages");
           },
         },
         {
-          name: "Map",
+          name: t("map"),
           icon: MapIcon,
           action() {
             setActivePage("map");
           },
         },
         {
-          name: "Extensions",
+          name: t("extensions"),
           icon: BeakerIcon,
           action() {
             setActivePage("extensions");
           },
         },
         {
-          name: "Config",
+          name: t("config"),
           icon: Cog8ToothIcon,
           action() {
             setActivePage("config");
           },
         },
         {
-          name: "Channels",
+          name: t("channels"),
           icon: Square3Stack3DIcon,
           action() {
             setActivePage("channels");
           },
         },
         {
-          name: "Peers",
+          name: t("peers"),
           icon: UsersIcon,
           action() {
             setActivePage("peers");
           },
         },
         {
-          name: "Info",
+          name: t("info"),
           icon: IdentificationIcon,
           action() {
             setActivePage("info");
           },
         },
         {
-          name: "Logs",
+          name: t("logs"),
           icon: DocumentTextIcon,
           action() {
             setActivePage("logs");
@@ -131,18 +133,18 @@ export const CommandPalette = (): JSX.Element => {
       ],
     },
     {
-      name: "Manage",
+      name: t("manage"),
       icon: DevicePhoneMobileIcon,
       commands: [
         {
-          name: "[WIP] Switch Node",
+          name: "[WIP] " + t("switchNode"),
           icon: ArrowsRightLeftIcon,
           action() {
             alert('This feature is not implemented');
           },
         },
         {
-          name: "Connect New Node",
+          name: t("connectNewNode"),
           icon: PlusIcon,
           action() {
             setSelectedDevice(0);
@@ -151,31 +153,31 @@ export const CommandPalette = (): JSX.Element => {
       ],
     },
     {
-      name: "Contextual",
+      name: t("contextual"),
       icon: CubeTransparentIcon,
       commands: [
         {
-          name: "QR Code Generator",
+          name: t("qrGenerator"),
           icon: QrCodeIcon,
           action() {
             setQRDialogOpen(true);
           },
         },
         {
-          name: "Reset Peers",
+          name: t("resetPeers"),
           icon: TrashIcon,
           action() {
             if (connection) {
               void toast.promise(connection.resetPeers(), {
-                loading: "Resetting...",
-                success: "Succesfully reset peers",
-                error: "No response received",
+                loading: t("resetting").toString(),
+                success: t("resetPeersSuccess").toString(),
+                error: t("resetPeersNoResponse").toString(),
               });
             }
           },
         },
         {
-          name: "Disconnect",
+          name: t("disconnect"),
           icon: XCircleIcon,
           action() {
             void connection?.disconnect();
@@ -186,18 +188,18 @@ export const CommandPalette = (): JSX.Element => {
       ],
     },
     {
-      name: "Debug",
+      name: t("debug"),
       icon: BugAntIcon,
       commands: [
         {
-          name: "Reconfigure",
+          name: t("reconfigure"),
           icon: ArrowPathIcon,
           action() {
             void connection?.configure();
           },
         },
         {
-          name: "[WIP] Clear Messages",
+          name: "[WIP] " + t("clearMessages"),
           icon: ArchiveBoxXMarkIcon,
           action() {
             alert('This feature is not implemented');
@@ -206,11 +208,11 @@ export const CommandPalette = (): JSX.Element => {
       ],
     },
     {
-      name: "Application",
+      name: t("application"),
       icon: WindowIcon,
       commands: [
         {
-          name: "[WIP] Toggle Dark Mode",
+          name: "[WIP] " + t("toggleDarkMode"),
           icon: MoonIcon,
           action() {
             alert('This feature is not implemented');

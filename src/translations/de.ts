@@ -1,16 +1,40 @@
 const data = {
   translation: {
-    "Connected Devices": "Verbundene Geräte",
-    "Ctrl": "Strg",
+    "connectedDevices": "Verbundene Geräte",
+    "ctrl": "Strg",
 
-    "No devices paired yet": "Noch keine Geräte verbunden",
-    "New device": "Neues Gerät",
+    "noDevicesPaired": "Noch keine Geräte verbunden",
+    "newDevice": "Neues Gerät",
 
-    "IP Address/Hostname": "IP Addresse/Hostname",
-    "Use TLS": "TLS verwenden",
-    "Connect": "Verbinden",
+    "ipOrHostname": "IP Addresse/Hostname",
+    "useTls": "TLS verwenden",
+    "tlsDescription": "Verschlüsselt die Kommunikation zum Gerät",
+    "connect": "Verbinden",
 
-    "Enter Message": "Nachricht eingeben"
+    "goto": "Links",
+    "messages": "Nachrichten",
+    "map": "Karte",
+    "extensions": "Erweiterungen",
+    "config": "Konfiguration",
+    "channels": "Kanäle",
+    "peers": "Peers",
+    "info": "Info",
+    "logs": "Logs",
+    "manage": "Verwalten",
+    "switchNode": "Knoten wechseln",
+    "connectNewNode": "Neuen Knoten verbinden",
+    "contextual": "Kontextbezogen",
+    "qrGenerator": "QR Code Generator",
+    "resetPeers": "Peers zurücksetzen",
+    "resetting": "Zurücksetzen...",
+    "resetPeersSuccess": "Peers erfolgreich zurückgesetzt",
+    "resetPeersNoResponse": "Keine Antwort erhalten",
+    "disconnect": "Verbindung trennen",
+    "debug": "Debug",
+    "reconfigure": "Neu konfigurieren",
+    "clearMessages": "Nachrichten löschen",
+    "application": "Anwendung",
+    "toggleDarkMode": "Dark Mode umschalten",
   }
 };
 

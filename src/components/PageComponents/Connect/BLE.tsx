@@ -52,7 +52,7 @@ export const BLE = (): JSX.Element => {
           </Button>
         ))}
         {bleDevices.length === 0 && (
-          <Mono className="m-auto">{t("No devices paired yet")}</Mono>
+          <Mono className="m-auto">{t("noDevicesPaired")}</Mono>
         )}
       </div>
       <Button
@@ -70,7 +70,7 @@ export const BLE = (): JSX.Element => {
             });
         }}
       >
-        {t("New device")}
+        {t("newDevice")}
       </Button>
     </div>
   );
